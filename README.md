@@ -1,12 +1,12 @@
 # MCollectionView
 
-## UICollectionView的封装：
+#### UICollectionView的封装：
 1. 自动计算行高，缓存行高
 2. 支持设置cell的上下左右间隙
 3. 控制器减负最有效处理，根治MVC问题。不用写数据源方法，cell的点击事件逻辑分离到各cell中，逻辑清晰，代码也不臃肿。数据源方法也不用写
 4. cell中可以直接访问到CollectionView和ViewController，不用担心循环引用问题，消除一层层的代理或block传递，也不用写那么多通知
 
-## 使用方法：
+#### 使用方法：
 1. 初始化：
 ```
 MCollectionView *collectionView = [[MCollectionView alloc] initWithScrollDirection:UICollectionViewScrollDirectionVertical delegate:nil];
@@ -23,7 +23,7 @@ MCollectionViewSectionModel *section1 = [MCollectionViewSectionModel new]; //如
 section1.itemModels = 模型数组
 ```
 
-## 搞定了，有没有发现下面这些方法都不用写，几行代码就搞定了。用下看吧，你会发现控制器里居然空了，几千行代码秒变一百行^_^：
+#### 搞定了，有没有发现下面这些方法都不用写，几行代码就搞定了。用下看吧，你会发现控制器里居然空了，几千行代码秒变一百行^_^：
 ```
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -38,5 +38,5 @@ section1.itemModels = 模型数组
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
 ```
 
-## 注：`- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath`方法也不用写，点击Cell的处理逻辑就写在Cell中。这个方法如果有必要，写也可以，这个方法默认是Cell的`didSelectItem_mc`方法调用后在调用`mDelegate`的这个方法
+#### 注：`- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath`方法也不用写，点击Cell的处理逻辑就写在Cell中。这个方法如果有必要，写也可以，这个方法默认是Cell的`didSelectItem_mc`方法调用后在调用`mDelegate`的这个方法
 
