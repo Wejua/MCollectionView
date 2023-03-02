@@ -11,6 +11,7 @@
 #import "MCollectionViewSectionModel.h"
 #import "MCollectionViewDelegate.h"
 #import "UIView+ViewController.h"
+#import "MCDelegateDataSource.h"
 
 static CGFloat const MCollectionViewAutomaticWidth = -1.0;
 static CGFloat const MCollectionViewAutomaticHeight = -1.0;

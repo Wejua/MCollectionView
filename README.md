@@ -9,18 +9,20 @@
 ### 使用方法：
 1. 初始化：
 ```
-MCollectionView *collectionView = [[MCollectionView alloc] initWithScrollDirection:UICollectionViewScrollDirectionVertical delegate:nil];
+MCollectionView *collectionView = [[MCollectionView alloc] initWithScrollDirection:UICollectionViewScrollDirectionVertical delegate:nil];//需要CollectionView的其它方法，在这里设置代理，这里设置为nil
 [self.view addSubview:collectionView];
 ```
 
 2. cell中实现`- (void)setModel_mc:(NSObject *)model`方法设置cell数据
 
-3. model中：实现`- (NSString *)reuseViewName_mc`方法，返回cell的类名
+3. model中：实现`- (NSString *)reuseViewName_mc`方法，返回cell的类名。model是NSObject类就行，一个model可以对应多个Cell，见TextCellModel.m
 
 4. 设置数据：  
 ```
 MCollectionViewSectionModel *section1 = [MCollectionViewSectionModel new]; //如果要分多个组，就多初始化几个MCollectionViewSectionModel就行啦
 section1.itemModels = 模型数组
+NSMutableArray *sectionModels = [NSMutableArray arrayWithArray:@[section1, section2, section3]];//三个MCollectionViewSectionModel就是三个组
+self.sectionModels = sectionModels;
 ```
 
 ### 搞定了，有没有发现下面这些方法都不用写，几行代码就搞定了。用下看吧，你会发现控制器里居然空了，几千行代码秒变一百行^_^：

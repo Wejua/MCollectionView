@@ -29,10 +29,6 @@
     return self;
 }
 
-- (void)setModel_mc:(HeaderModel *)model {
-    self.textL.text = model.headerTitle;
-}
-
 - (UILabel *)textL {
     if (!_textL) {
         _textL = [UILabel new];
@@ -43,4 +39,10 @@
     }
     return _textL;
 }
+
+#pragma mark - MCollectionView
+- (void)setModel_mc:(HeaderModel *)model {
+    self.textL.text = model.headerTitle;
+}
+
 @end

@@ -16,6 +16,7 @@
     return _title;
 }
 
+#pragma mark - MCollectionView
 - (NSString *)reuseViewName_mc {
     if (self.cellType == CellType1) {
         return @"TextCell";

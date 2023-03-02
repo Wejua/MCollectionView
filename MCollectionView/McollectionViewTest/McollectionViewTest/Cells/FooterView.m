@@ -29,10 +29,6 @@
     return self;
 }
 
-- (void)setModel_mc:(FooterModel *)model {
-    self.textL.text = model.footerTitle;
-}
-
 - (UILabel *)textL {
     if (!_textL) {
         _textL = [UILabel new];
@@ -43,4 +39,10 @@
     }
     return _textL;
 }
+
+#pragma mark - MCollectionView
+- (void)setModel_mc:(FooterModel *)model {
+    self.textL.text = model.footerTitle;
+}
+
 @end

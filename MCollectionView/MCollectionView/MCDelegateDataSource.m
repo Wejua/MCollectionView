@@ -168,6 +168,7 @@
     [collectionView registerClass:NSClassFromString(model.reuseViewName_mc) forCellWithReuseIdentifier:model.reuseViewName_mc];
     UICollectionViewCell *cell = [_collectioinView dequeueReusableCellWithReuseIdentifier:model.reuseViewName_mc ?: @"" forIndexPath:indexPath];
     cell.collectionView_mc = _collectioinView;
+    cell.indexPath_mc = indexPath;
     [cell setModel_mc:model];
     cell.contentView.layoutMargins = model.layoutMargins_mc;
     return cell ?: [UICollectionViewCell new];
@@ -180,6 +181,7 @@
         [collectionView registerClass:NSClassFromString(model.reuseViewName_mc) forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:model.reuseViewName_mc];
         UICollectionReusableView *reuseV = [_collectioinView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:model.reuseViewName_mc ?: @"" forIndexPath:indexPath];
         reuseV.collectionView_mc = _collectioinView;
+        reuseV.indexPath_mc = indexPath;
         [reuseV setModel_mc:model];
         reuseV.layoutMargins = model.layoutMargins_mc;
         return reuseV ?: [UICollectionReusableView new];
@@ -189,6 +191,7 @@
         [collectionView registerClass:NSClassFromString(model.reuseViewName_mc) forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:model.reuseViewName_mc];
         UICollectionReusableView *reuseV = [_collectioinView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:model.reuseViewName_mc ?: @"" forIndexPath:indexPath];
         reuseV.collectionView_mc = _collectioinView;
+        reuseV.indexPath_mc = indexPath;
         [reuseV setModel_mc:model];
         reuseV.layoutMargins = model.layoutMargins_mc;
         return reuseV ?: [UICollectionReusableView new];

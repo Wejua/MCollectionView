@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (ViewController)
+/// 获取到最近的一个VC
 - (UIViewController *)viewController_mc;
 @end
 

@@ -100,7 +100,7 @@
     CGFloat leftRigtMargin = 50.0;
     self.addButton.frame = CGRectMake(leftRigtMargin, safeAreaTop, buttonW, buttonH);
     self.deleteButton.frame = CGRectMake(screenW-leftRigtMargin-buttonW, safeAreaTop, buttonW, buttonH);
-//    self.collectionView.frame = CGRectMake(0, buttonH + safeAreaTop, self.view.bounds.size.width, self.view.bounds.size.height - buttonH - safeAreaTop);
+//    self.collectionView.frame = CGRectMake(0, buttonH + safeAreaTop, self.view.bounds.size.width, 200);
     
     self.collectionView.translatesAutoresizingMaskIntoConstraints = false;
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.collectionView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.addButton attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];

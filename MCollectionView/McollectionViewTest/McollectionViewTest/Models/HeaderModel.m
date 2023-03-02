@@ -13,6 +13,7 @@
     return @"HeaderHeaderHeaderHeaderHeaderHeaderHeaderHeaderHeaderHeaderHeaderHeaderHeaderHeaderHeaderHeaderHeaderHeader";
 }
 
+#pragma mark - MCollectionView
 - (NSString *)reuseViewName_mc {
     return @"HeaderView";
 }

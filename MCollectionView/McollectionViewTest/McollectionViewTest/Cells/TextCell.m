@@ -29,10 +29,6 @@
     return self;
 }
 
-- (void)setModel_mc:(TextCellModel *)model {
-    self.textL.text = model.title;
-}
-
 - (UILabel *)textL {
     if (!_textL) {
         _textL = [UILabel new];
@@ -44,8 +40,13 @@
     return _textL;
 }
 
+#pragma mark - MCollectionView
+- (void)setModel_mc:(TextCellModel *)model {
+    self.textL.text = model.title;
+}
+
 - (void)didSelectItem_mc {
-    NSLog(@"%@-%@", self.class, NSStringFromSelector(_cmd));
+    NSLog(@"\nviewController: %@, \ncollectinView: %@, \nindexPath: %@, \nclass: %@, \nSelector: %@",NSStringFromClass(self.viewController_mc.class) ,NSStringFromClass(self.collectionView_mc.class), self.indexPath_mc, self.class, NSStringFromSelector(_cmd));
 }
 
 @end

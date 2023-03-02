@@ -6,8 +6,6 @@
 //
 
 #import "MCollectionView.h"
-#include <objc/runtime.h>
-#import "MCDelegateDataSource.h"
 
 @implementation MCollectionView
 {

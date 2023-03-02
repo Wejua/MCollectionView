@@ -14,6 +14,7 @@
     return @"FooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooterFooter";
 }
 
+#pragma mark - MCollectionView
 - (NSString *)reuseViewName_mc {
     return @"FooterView";
 }
