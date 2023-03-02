@@ -97,18 +97,17 @@
 }
 
 #pragma mark - 私有方法
-- (CGSize)getSizeWithModel:(NSObject *)model {
+- (CGSize)getSizeWithModel:(NSObject *)model fixedSize:(CGSize)fixedSize {
     if (!model) {
         return CGSizeZero;
     }
     if (!model.invalidateCachedSizeOnce_mc && !CGSizeEqualToSize(model.cachedSize_mc, CGSizeZero)) return model.cachedSize_mc;
-    CGSize size = [model size_mc];
-    if (size.width == MCollectionViewAutomaticWidth || size.height == MCollectionViewAutomaticHeight) {
-        size = [self caculateSizeWithWidth:size.width height:size.height model:model];
+    if (fixedSize.width == MCollectionViewAutomaticWidth || fixedSize.height == MCollectionViewAutomaticHeight) {
+        fixedSize = [self caculateSizeWithWidth:fixedSize.width height:fixedSize.height model:model];
     }
-    model.cachedSize_mc = size;
+    model.cachedSize_mc = fixedSize;
     model.invalidateCachedSizeOnce_mc = false;
-    return size;
+    return fixedSize;
 }
 
 - (CGSize)caculateSizeWithWidth:(CGFloat)width height:(CGFloat)height model:(NSObject *)model {
@@ -131,21 +130,10 @@
         _tempConstraint = [NSLayoutConstraint constraintWithItem:caculateView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:width];
         [caculateView addConstraint:_tempConstraint];
         
-    } else if (height != MCollectionViewAutomaticHeight) {
+    }
+    if (height != MCollectionViewAutomaticHeight) {
         _tempConstraint = [NSLayoutConstraint constraintWithItem:caculateView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:height];
         [caculateView addConstraint:_tempConstraint];
-    } else if (width == MCollectionViewAutomaticWidth && height == MCollectionViewAutomaticHeight) {
-        if (_collectioinView.flowLayout.scrollDirection == UICollectionViewScrollDirectionVertical) {
-            UIEdgeInsets sectionInsets = _collectioinView.sectionModels[model.indexPath_mc.section].sectionInset;
-            width = _collectioinView.frame.size.width - sectionInsets.left - sectionInsets.right;
-            _tempConstraint = [NSLayoutConstraint constraintWithItem:caculateView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:width];
-            [caculateView addConstraint:_tempConstraint];
-        } else {
-            UIEdgeInsets sectionInsets = _collectioinView.sectionModels[model.indexPath_mc.section].sectionInset;
-            height = _collectioinView.frame.size.height - sectionInsets.top - sectionInsets.bottom;
-            _tempConstraint = [NSLayoutConstraint constraintWithItem:caculateView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:height];
-            [caculateView addConstraint:_tempConstraint];
-        }
     }
     CGSize size = [caculateView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     [caculateView removeConstraint:_tempConstraint];
@@ -202,21 +190,53 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
     NSObject *model = _collectioinView.sectionModels[section].headerModel;
     model.indexPath_mc = [NSIndexPath indexPathForRow:0 inSection:section];
-    CGSize size = [self getSizeWithModel:model];
+    
+    CGSize fixedSize = model.size_mc;
+    if (_collectioinView.flowLayout.scrollDirection == UICollectionViewScrollDirectionVertical) {
+        CGFloat maxWith = _collectioinView.frame.size.width;
+        fixedSize = CGSizeMake(maxWith, model.size_mc.height);
+    } else {
+        CGFloat maxHeight = _collectioinView.frame.size.height;
+        fixedSize = CGSizeMake(model.size_mc.width, maxHeight);
+    }
+    CGSize size = [self getSizeWithModel:model  fixedSize:fixedSize];
     return size;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     NSObject *model = _collectioinView.sectionModels[indexPath.section].itemModels[indexPath.item];
     model.indexPath_mc = indexPath;
-    CGSize size = [self getSizeWithModel:model];
+    
+    UIEdgeInsets sectionInset = _collectioinView.sectionModels[indexPath.section].sectionInset;
+    CGSize fixedSize = model.size_mc;
+    if (_collectioinView.flowLayout.scrollDirection == UICollectionViewScrollDirectionVertical) {
+        CGFloat maxWith = _collectioinView.frame.size.width - sectionInset.left - sectionInset.right;
+        if (model.size_mc.width == MCollectionViewAutomaticWidth || model.size_mc.width > maxWith) {
+            fixedSize = CGSizeMake(maxWith, model.size_mc.height);
+        }
+    } else {
+        CGFloat maxHeight = _collectioinView.frame.size.height - sectionInset.top - sectionInset.bottom;
+        if (model.size_mc.height == MCollectionViewAutomaticHeight || model.size_mc.height > maxHeight) {
+            fixedSize = CGSizeMake(model.size_mc.width, maxHeight);
+        }
+    }
+    CGSize size = [self getSizeWithModel:model fixedSize:fixedSize];
     return size;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
     NSObject *model = _collectioinView.sectionModels[section].footerModel;
     model.indexPath_mc = [NSIndexPath indexPathForRow:0 inSection:section];
-    CGSize size = [self getSizeWithModel:model];
+    
+    CGSize fixedSize = model.size_mc;
+    if (_collectioinView.flowLayout.scrollDirection == UICollectionViewScrollDirectionVertical) {
+        CGFloat maxWith = _collectioinView.frame.size.width;
+        fixedSize = CGSizeMake(maxWith, model.size_mc.height);
+    } else {
+        CGFloat maxHeight = _collectioinView.frame.size.height;
+        fixedSize = CGSizeMake(model.size_mc.width, maxHeight);
+    }
+    CGSize size = [self getSizeWithModel:model fixedSize:fixedSize];
     return size;
 }
 
