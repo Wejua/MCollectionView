@@ -27,9 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// reloadItemsAtIndexPaths, reloadData, reloadSections方法调用时是否要忽略缓存大小重新计算，默认NO
 @property (nonatomic, assign) BOOL invalidateCachedSizeOnReloading;
 
-/// 其余代理方法
-@property (nonatomic, weak, nullable) id<MCollectionViewDelegate> mDelegate;
-
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 
 @end

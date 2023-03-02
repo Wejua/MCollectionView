@@ -45,7 +45,7 @@
 }
 
 - (void)didSelectItem_mc {
-    NSLog(@"didSelectItem_mc : TextCollectionViewCell");
+    NSLog(@"%@-%@", self.class, NSStringFromSelector(_cmd));
 }
 
 @end

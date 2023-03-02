@@ -26,6 +26,7 @@
 		2312E02226BE986E00474410 /* NSObject+MCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2312E01D26BE986E00474410 /* NSObject+MCollectionView.m */; };
 		234D703F26D4D2730044014E /* TextCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 234D703E26D4D2730044014E /* TextCell2.m */; };
 		23D6E98226D8C4E7001D37BE /* UIView+ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D6E98026D8C4E7001D37BE /* UIView+ViewController.m */; };
+		480BC35C29B042EE00F4D063 /* MCDelegateDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 480BC35B29B0420600F4D063 /* MCDelegateDataSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,8 @@
 		234D703E26D4D2730044014E /* TextCell2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextCell2.m; sourceTree = "<group>"; };
 		23D6E98026D8C4E7001D37BE /* UIView+ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ViewController.m"; sourceTree = "<group>"; };
 		23D6E98126D8C4E7001D37BE /* UIView+ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ViewController.h"; sourceTree = "<group>"; };
+		480BC35A29B0420600F4D063 /* MCDelegateDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCDelegateDataSource.h; sourceTree = "<group>"; };
+		480BC35B29B0420600F4D063 /* MCDelegateDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCDelegateDataSource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +128,8 @@
 				2312E01926BE986E00474410 /* MCollectionView.h */,
 				2312E01626BE986E00474410 /* MCollectionView.m */,
 				234D703526D39BC60044014E /* MCollectionViewDelegate.h */,
+				480BC35A29B0420600F4D063 /* MCDelegateDataSource.h */,
+				480BC35B29B0420600F4D063 /* MCDelegateDataSource.m */,
 			);
 			name = MCollectionView;
 			path = ../MCollectionView;
@@ -255,6 +260,7 @@
 				230BDE3F26BABEE500518056 /* TextCellModel.m in Sources */,
 				2312E02226BE986E00474410 /* NSObject+MCollectionView.m in Sources */,
 				230BDE0126BAB66D00518056 /* SceneDelegate.m in Sources */,
+				480BC35C29B042EE00F4D063 /* MCDelegateDataSource.m in Sources */,
 				2312E02026BE986E00474410 /* UICollectionReusableView+MCollectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
