@@ -9,23 +9,25 @@
 ### 使用方法：
 1. 初始化：
 ```
-MCollectionView *collectionView = [[MCollectionView alloc] initWithScrollDirection:UICollectionViewScrollDirectionVertical delegate:nil];//需要CollectionView的其它方法，在这里设置代理，这里设置为nil
+MCollectionView *collectionView = [[MCollectionView alloc] initWithScrollDirection:UICollectionViewScrollDirectionVertical delegate:nil];
 [self.view addSubview:collectionView];
 ```
 
 2. cell中实现`- (void)setModel_mc:(NSObject *)model`方法设置cell数据
 
-3. model中：实现`- (NSString *)reuseViewName_mc`方法，返回cell的类名。model是NSObject类就行，一个model可以对应多个Cell，见TextCellModel.m
+3. model中：实现`- (NSString *)reuseViewName_mc`方法，返回cell的类名
 
-4. 设置数据：  
+4. 数据源：  
 ```
-MCollectionViewSectionModel *section1 = [MCollectionViewSectionModel new]; //如果要分多个组，就多初始化几个MCollectionViewSectionModel就行啦
-section1.itemModels = 模型数组
-NSMutableArray *sectionModels = [NSMutableArray arrayWithArray:@[section1, section2, section3]];//三个MCollectionViewSectionModel就是三个组
+MCollectionViewSectionModel *section1 = [MCollectionViewSectionModel new]; 
+section1.itemModels = 第一组模型
+section2.itemModels = 第二组模型
+section3.itemModels = 第三组模型
+NSMutableArray *sectionModels = [NSMutableArray arrayWithArray:@[section1, section2, section3]];
 self.sectionModels = sectionModels;
 ```
 
-### 搞定了，有没有发现下面这些方法都不用写，几行代码就搞定了。用下看吧，你会发现控制器里居然空了，几千行代码秒变一百行^_^：
+### 完成！下面这些方法都不用写哦，控制器从此轻松了！：
 ```
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -40,5 +42,5 @@ self.sectionModels = sectionModels;
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
 ```
 
-**注：`- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath`方法也不用写，点击Cell的处理逻辑就写在Cell中。这个方法如果有必要，写也可以，这个方法默认是Cell的`didSelectItem_mc`方法调用后在调用`mDelegate`的这个方法**
+**注：`- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath`方法也不用写，点击Cell的处理逻辑就写在Cell中。此库会调用Cell的`didSelectItem_mc`方法，并随后响应`mDelegate`的didSelectItemAtIndexPath代理方法**
 
